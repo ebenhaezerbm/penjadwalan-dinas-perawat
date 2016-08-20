@@ -1,0 +1,99 @@
+/**
+ * Author: Ebenhaezer BM;
+ */
+
+
+
+.navbar-nav li a {
+	color: #FFF;
+	text-decoration: none;
+	font-weight: 500;
+	padding: 10px 10px 10px 10px;
+	text-transform: uppercase;
+}
+
+.navbar-nav li a:hover {
+	color: #fff;
+}
+
+#menu-top.nav .dropdown.open > a,
+ .navbar-nav .dropdown.open > a {
+    background: #F0677C;
+    border: 0;
+}
+
+#menu-top.nav .dropdown-menu, 
+.navbar-nav .dropdown-menu {
+	background: #3D3D3D;
+}
+
+#menu-top.nav .dropdown .dropdown-menu {
+	padding: 0;
+}
+
+#menu-top.nav .dropdown-menu .caret,
+.navbar-nav .dropdown-menu .caret {
+	border-left-color: #fff;
+}
+
+#menu-top.nav .dropdown-menu .divider,
+.navbar-nav .dropdown-menu .divider {
+	background: #4A4A4A;
+}
+
+td.day {
+    text-transform: capitalize;
+}
+
+#button-rule {
+	display: block;
+	text-align: right;
+	text-decoration: underline;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
+}
+
+#rules, #rule-of-time {
+	display: none;
+}
+
+
+
+/* =Program Studi */
+.prodi-name,
+.jurusan-name {
+	text-transform: uppercase;
+}
+
+
+
+/* =Schedule */
+#caption-day, 
+#caption-time {
+	vertical-align: middle;
+}
+
+.mk-item {
+	cursor: pointer;
+}
+
+
+
+/* =Dialog */
+#dialog {
+	display: none;
+}
+
+.btn-action {
+	display: block !important;
+	margin: 0 auto;
+}
+
+
+
