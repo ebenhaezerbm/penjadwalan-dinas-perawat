@@ -7,7 +7,8 @@ class MY_Controller extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('M_Login');
+		
+		$this->load->model('M_User');
 		
 		$user	= $this->session->userdata('user');
 		if( !$user )

@@ -1,7 +1,6 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class C_Dashboard extends CI_Controller {
+class C_Dashboard extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +19,10 @@ class C_Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$data['title']		= 'Home';
+		$data['section']	= 'home';
+		$data['template']	= 'home.php';
+
+		$this->load->view( 'index', $data );
 	}
 }

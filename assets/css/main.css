@@ -41,6 +41,10 @@
 	background: #4A4A4A;
 }
 
+th {
+    text-align: center;
+}
+
 td.day {
     text-transform: capitalize;
 }
