@@ -1,249 +1,296 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" class="app">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <![endif]-->
-
-    <title><?php echo $title; ?></title>
-    
-    <!-- DATEPICKER -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-
-    <!-- BOOTSTRAP CORE STYLE -->
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet" />
-    
-    <!-- BOOTSTRAP DROPDOWN HOVER STYLE -->
-    <link href="<?php echo base_url('assets/css/animate.min.css'); ?>" rel="stylesheet" />
-    <link href="<?php echo base_url('assets/css/bootstrap-dropdownhover.min.css'); ?>" rel="stylesheet" />
-
-    <!-- FONT AWESOME ICONS -->
-    <link href="<?php echo base_url('assets/css/font-awesome.css'); ?>" rel="stylesheet" />
-    
-    <!-- SWEETALERT -->
-    <link href="<?php echo base_url('assets/css/sweetalert.css'); ?>" rel="stylesheet">
-    <script src="<?php echo base_url('assets/js/sweetalert.min.js'); ?>"></script>
-
-    <!-- CUSTOM STYLE -->
-    <link href="<?php echo base_url('assets/css/style.css'); ?>" rel="stylesheet" />
-    <link href="<?php echo base_url('assets/css/main.css'); ?>" rel="stylesheet" />
-    
-    <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <script type="text/javascript">
-        var base_url ='<?php echo base_url(); ?>';
-    </script>
+  <meta charset="utf-8" />
+  <title><?php echo $title; ?></title>
+  <meta name="description" content="and aku adalah cangak" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css'); ?>" type'="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css'); ?>" type'="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" type'="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/font.css'); ?>" type'="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/js/calendar/bootstrap_calendar.css'); ?>" type'="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?>" type'="text/css" />
+  <!--[if lt IE 9]>
+    <script src="js/ie/html5shiv.js"></script>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/excanvas.js"></script>
+  <![endif]-->
 </head>
 <body>
-	<header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <strong>Email: </strong>info@yourdomain.com
-                    &nbsp;&nbsp;
-                    <strong>Support: </strong>+90-897-678-44
-                </div>
+  <section class="vbox">
+    <header class="bg-dark dk header navbar navbar-fixed-top-xs">
+      <div class="navbar-header aside-md">
+        <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+          <i class="fa fa-bars"></i>
+        </a>
+        <a href="#" class="navbar-brand" data-toggle="fullscreen"><img src="<?php echo base_url('assets/images/logo.png'); ?>" class="m-r-sm">SIBEJADSUS</a>
+        <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".nav-user">
+          <i class="fa fa-cog"></i>
+        </a>
+      </div>
+        <?php $user = $this->session->userdata('user');
+if ($user) {
+    ?>
 
-            </div>
-        </div>
-    </header>
-    <!-- HEADER END-->
-
-    <div class="navbar navbar-inverse set-radius-zero">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">
-
-                    <img src="<?php echo base_url('assets/img/logo.png'); ?>" />
+      <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user">
+        <li class="hidden-xs">
+          <a href="#" class="dropdown-toggle dk" data-toggle="dropdown">
+            <i class="fa fa-bell"></i>
+            <span class="badge badge-sm up bg-danger m-l-n-sm count">2</span>
+          </a>
+          <section class="dropdown-menu aside-xl">
+            <section class="panel bg-white">
+              <header class="panel-heading b-light bg-light">
+                <strong>You have <span class="count">2</span> notifications</strong>
+              </header>
+              <div class="list-group list-group-alt animated fadeInRight">
+                <a href="#" class="media list-group-item">
+                  <span class="pull-left thumb-sm">
+                    <img src="assets/images/avatar.jpg" alt="John said" class="img-circle">
+                  </span>
+                  <span class="media-body block m-b-none">
+                    Use awesome animate.css<br>
+                    <small class="text-muted">10 minutes ago</small>
+                  </span>
                 </a>
+                <a href="#" class="media list-group-item">
+                  <span class="media-body block m-b-none">
+                    1.0 initial released<br>
+                    <small class="text-muted">1 hour ago</small>
+                  </span>
+                </a>
+              </div>
+              <footer class="panel-footer text-sm">
+                <a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+                <a href="#notes" data-toggle="class:show animated fadeInRight">See all the notifications</a>
+              </footer>
+            </section>
+          </section>
+        </li>
+        <li class="dropdown hidden-xs">
+          <a href="#" class="dropdown-toggle dker" data-toggle="dropdown"><i class="fa fa-fw fa-search"></i></a>
+          <section class="dropdown-menu aside-xl animated fadeInUp">
+            <section class="panel bg-white">
+              <form role="search">
+                <div class="form-group wrapper m-b-none">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-info btn-icon"><i class="fa fa-search"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </section>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="thumb-sm avatar pull-left">
+              <img src="assets/images/avatar.jpg">
+            </span>
 
-            </div>
+<?php
+echo $user['username'];
+    ?>
+<b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight">
+            <span class="arrow top"></span>
+            <li>
+              <a href="#">Settings</a>
+            </li>
+            <li>
+              <a href="profile.html">Profile</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="badge bg-danger pull-right">3</span>
+                Notifications
+              </a>
+            </li>
+            <li>
+              <a href="docs.html">Help</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <a href="<?php echo base_url('c_User/logout'); ?>">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul> <?php }?>
+    </header>
+    <section>
+      <section class="hbox stretch">
+        <!-- .aside -->
+<?php if ($user) {?>
+        <aside class="bg-dark lter aside-md hidden-print" id="nav">
+          <section class="vbox">
+            <section class="w-f scrollable">
+              <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
 
-            <div class="left-div">
-                <div class="user-settings-wrapper">
-                    <ul class="nav">
-
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-                            </a>
-                            <div class="dropdown-menu dropdown-settings">
-                                <div class="media">
-                                    <a class="media-left" href="#">
-                                        <img src="<?php echo base_url('assets/img/64-64.jpg'); ?>" alt="" class="img-rounded" />
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Jhon Deo Alex </h4>
-                                        <h5>Developer & Designer</h5>
-
-                                    </div>
-                                </div>
-                                <hr />
-                                <h5><strong>Personal Bio : </strong></h5>
-                                Anim pariatur cliche reprehen derit.
-                                <hr />
-                                <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
-
-                            </div>
+                <!-- nav -->
+                <nav class="nav-primary hidden-xs">
+                  <ul class="nav">
+                    <li  class=" <?php echo ($section == 'home') ? 'active' : ''; ?>">
+                      <a href="<?php echo base_url('c_Dashboard'); ?>"   <?php echo ($section == 'home') ? 'active' : ''; ?>>
+                        <i class="fa fa-dashboard icon">
+                          <b class="bg-danger"></b>
+                        </i>
+                        <span>Home</span>
+                      </a>
+                    </li>
+                    <li class="<?php echo (strpos($section, 'perawat') !== false) ? 'active' : ''; ?>">
+                      <a href="#perawat"  class="<?php echo (strpos($section, 'perawat') !== false) ? 'active' : ''; ?>">
+                        <i class="fa fa-ambulance">
+                          <b class="bg-warning"></b>
+                        </i>
+                        <span class="pull-right">
+                          <i class="fa fa-angle-down text"></i>
+                          <i class="fa fa-angle-up text-active"></i>
+                        </span>
+                        <span>Perawat</span>
+                      </a>
+                      <ul class="nav lt">
+                        <li >
+                          <a href="<?php echo base_url('c_Perawat'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Semua Perawat</span>
+                          </a>
                         </li>
+                        <li >
+                          <a href="<?php echo base_url('c_Perawat/add_perawat'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Tambah Perawat</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="<?php echo (strpos($section, 'jabatan') !== false) ? 'active' : ''; ?>">
+                      <a href="#jabatan" class="<?php echo (strpos($section, 'jabatan') !== false) ? 'active' : ''; ?>" >
+                        <i class="fa fa-plane icon">
 
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- LOGO HEADER END-->
+                          <b class="bg-success"></b>
+                        </i>
+                        <span class="pull-right">
+                          <i class="fa fa-angle-down text"></i>
+                          <i class="fa fa-angle-up text-active"></i>
+                        </span>
+                        <span>Jabatan</span>
+                      </a>
+                      <ul class="nav lt">
+                        <li >
+                          <a href="<?php echo base_url('c_Jabatan'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Semua Jabatan</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="<?php echo base_url('c_Jabatan/add_jabatan'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Tambah Jabatan</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+<li class="<?php echo (strpos($section, 'pendidikan') !== false) ? 'active' : ''; ?>">
+                      <a href="#layout"  class="<?php echo (strpos($section, 'jabatan') !== false) ? 'active' : ''; ?>">
+                        <i class="fa fa-book icon">
+                          <b class="bg-primary"></b>
+                        </i>
+                        <span class="pull-right">
+                          <i class="fa fa-angle-down text"></i>
+                          <i class="fa fa-angle-up text-active"></i>
+                        </span>
+                        <span>Pendidikan</span>
+                      </a>
+                      <ul class="nav lt">
+                        <li >
+                          <a href="<?php echo base_url('c_Pendidikan'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Semua Pendidikan</span>
+                          </a>
+                        </li>
+                        <li >
+                          <a href="<?php echo base_url('c_Pendidikan/add_pendidikan'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Tambah Pendidikan</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
 
-    <?php $user = $this->session->userdata('user'); ?>
+                    <li class="<?php echo (strpos($section, 'jadwal') !== false) ? 'active' : ''; ?>">
+                      <a href="#layout"  class="<?php echo (strpos($section, 'jadwal') !== false) ? 'active' : ''; ?>">
+                        <i class="fa fa-book icon">
+                          <b class="bg-primary"></b>
+                        </i>
+                        <span class="pull-right">
+                          <i class="fa fa-angle-down text"></i>
+                          <i class="fa fa-angle-up text-active"></i>
+                        </span>
+                        <span>Jadwal</span>
+                      </a>
+                      <ul class="nav lt">
+                        <li >
+                          <a href="<?php echo base_url('c_Schedule'); ?>" >
+                            <i class="fa fa-angle-right"></i>
+                            <span>Semua Jadwal</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
+                <!-- / nav -->
+              </div>
+            </section>
 
-    <section class="menu-section">
-        
-        <div class="container">
-            
-            <div class="row">
-                
-                <div class="col-md-12">
+            <footer class="footer lt hidden-xs b-t b-dark">
 
-                    <div class="collapse navbar-collapse">
-                        
-                        <ul id="menu-top" class="nav navbar-nav" data-hover="dropdown" data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft">
-                            <li>
-                                <a <?php echo ( $section == 'home' ) ? 'class="menu-top-active"': ''; ?> href="<?php echo base_url('c_Dashboard'); ?>">Home</a>
-                            </li>
+              <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-dark btn-icon">
+                <i class="fa fa-angle-left text"></i>
+                <i class="fa fa-angle-right text-active"></i>
+              </a>
 
-                            <?php if( $user ) : ?>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        Manage <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdownhover-bottom" role="menu">
-                                        <li class="dropdown">
-                                            <a href="<?php echo base_url('c_Perawat'); ?>">
-                                                Data Perawat <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu dropdownhover-right">
-                                                <li><a href="<?php echo base_url('c_Perawat'); ?>">Semua Perawat</a></li>
-                                                <li><a href="<?php echo base_url('c_Perawat/add_perawat'); ?>">Tambah Perawat</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown">
-                                            <a href="<?php echo base_url('c_Jabatan'); ?>">
-                                                Jabatan <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu dropdownhover-right">
-                                                <li><a href="<?php echo base_url('c_Jabatan'); ?>">Daftar Jabatan</a></li>
-                                                <li><a href="<?php echo base_url('c_Jabatan/add_jabatan'); ?>">Tambah Jabatan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a href="<?php echo base_url('c_Pendidikan'); ?>">
-                                                Jenjang Pendidikan <span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu dropdownhover-right">
-                                                <li><a href="<?php echo base_url('c_Pendidikan'); ?>">Daftar Jenjang Pendidikan</a></li>
-                                                <li><a href="<?php echo base_url('c_Pendidikan/add_pendidikan'); ?>">Tambah Jenjang Pendidikan</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-
-                            <li>
-                                <a <?php echo ( $section == 'schedule' ) ? 'class="menu-top-active"': ''; ?> href="<?php echo base_url('c_Schedule'); ?>">View Schedule</a>
-                            </li>
-                        </ul>
-                        
-                        <?php 
-                            if( $user ) : ?>
-                                <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="fadeInDown fadeInRight fadeInUp fadeInLeft">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                            Account <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu dropdownhover-top" role="menu" style="bottom: 100%; top: auto;">
-                                            <li>
-                                                <a href="<?php echo base_url('c_User'); ?>">Profile</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url('c_User/change_password'); ?>">Change Password</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="<?php echo base_url('c_User/logout'); ?>">Logout</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <?php 
-                            else : ?>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>
-                                        <a href="<?php echo base_url('Login'); ?>">Login</a>
-                                    </li>
-                                </ul>
-                                <?php 
-                            endif;
-                        ?>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
+            </footer>
+          </section>
+        </aside>
+        <!-- /.aside -->
+        <?php }?>
+        <section id="content">
+          <section class="vbox">
+             <section class="scrollable padder">
+                <?php $this->load->view($template);?>
+          </section>
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+        </section>
+        <aside class="bg-light lter b-l aside-md hide" id="notes">
+          <div class="wrapper">Notification</div>
+        </aside>
+      </section>
     </section>
-    <!-- MENU SECTION END-->
+  </section>
+  <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+  <!-- Bootstrap -->
+  <script src="<?php echo base_url('assets/js/bootstrap.js'); ?>"></script>
+  <!-- App -->
+  <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/app.plugin.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/slimscroll/jquery.slimscroll.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/charts/easypiechart/jquery.easy-pie-chart.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/charts/sparkline/jquery.sparkline.min.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/charts/flot/jquery.flot.min.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/charts/flot/jquery.flot.tooltip.min.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/charts/flot/jquery.flot.resize.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/charts/flot/jquery.flot.grow.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/charts/flot/demo.js'); ?>"></script>
 
-    <div class="content-wrapper">
-        <div class="container">
-            <?php $this->load->view( $template ); ?>
-        </div>
-    </div>
-    <!-- CONTENT-WRAPPER SECTION END-->
+  <script src="<?php echo base_url('assets/js/calendar/bootstrap_calendar.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/calendar/demo.js'); ?>"></script>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    &copy; 2015 YourCompany | By : <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap</a>
-                </div>
+  <script src="<?php echo base_url('assets/js/sortable/jquery.sortable.js'); ?>"></script>
 
-            </div>
-        </div>
-    </footer>
-    <!-- FOOTER SECTION END-->
-
-    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY SCRIPTS -->
-    <script src="<?php echo base_url('assets/js/jquery-1.11.1.js'); ?>"></script>
-
-    <!-- JQUERY DATEPICKER -->
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-
-    <!-- BOOTSTRAP SCRIPTS  -->
-    <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
-
-    <!-- BOOTSTRAP DROPDOWN HOVER JS -->
-    <script src="<?php echo base_url('assets/js/bootstrap-dropdownhover.min.js'); ?>"></script>
-
-    <!-- CUSTOM SCRIPTS  -->
-    <script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
 </body>
 </html>
