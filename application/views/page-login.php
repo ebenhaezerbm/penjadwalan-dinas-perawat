@@ -1,74 +1,80 @@
-            <div class="row">
-                <div class="col-md-6">
-                    <form action="<?php echo base_url('Login/validate_user'); ?>" method="POST">
-                        <h4> Login with facebook <strong> / </strong>Google :</h4>
-                        <br />
-                        <a href="index.html" class="btn btn-social btn-facebook">
-                        	<i class="fa fa-facebook"></i>
-                        	&nbsp; Facebook Account
-                    	</a>
-                        &nbsp;OR&nbsp;
-                        <a href="index.html" class="btn btn-social btn-google">
-                        	<i class="fa fa-google-plus"></i>
-                        	&nbsp; Google Account
-                    	</a>
-                        <hr />
-							<h4> Or Login with <strong>Zontal Account  :</strong></h4>
-                        <br />
-                        <?php
-	                        if( $message ){
-	                            echo '<div class="alert alert-'.$type.' text-center">'.$message.'</div>';
-	                            echo '<hr />';
-	                        }
-	                    ?>
-	                    <label>Enter Username : </label>
-                        <input type="text" class="form-control" name="username" id="username" />
-                        <label>Enter Password :  </label>
-                        <input type="password" class="form-control" name="password" id="password" />
-                        <hr />
-                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-user"></span> &nbsp;Login</button>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    <div class="alert alert-info">
-                        This is a free bootstrap admin template with basic pages you need to craft your project. 
-                        Use this template for free to use for personal and commercial use.
-                        <br />
-                         <strong> Some of its features are given below :</strong>
-                        <ul>
-                            <li>
-                                Responsive Design Framework Used
-                            </li>
-                            <li>
-                                Easy to use and customize
-                            </li>
-                            <li>
-                                Font awesome icons included
-                            </li>
-                            <li>
-                                Clean and light code used.
-                            </li>
-                        </ul>
-                       
-                    </div>
-                    <div class="alert alert-success">
-                         <strong> Instructions To Use:</strong>
-                        <ul>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor sit ame
-                            </li>
-                            <li>
-                                 Aamet ipsum dolor sit ame
-                            </li>
-                            <li>
-                               Lorem ipsum dolor sit amet ipsum dolor
-                            </li>
-                            <li>
-                                 Cpsum dolor sit ame
-                            </li>
-                        </ul>
-                       
-                    </div>
-                </div>
+<!DOCTYPE html>
+<html lang="en" class="bg-dark">
+<head>
+  <meta charset="utf-8" />
+  <title>Notebook | Web Application</title>
+  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css'); ?>" type="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css'); ?>" type="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" type="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/font.css'); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/app.css'); ?>" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="js/ie/html5shiv.js"></script>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/excanvas.js"></script>
+  <![endif]-->
+</head>
+<body>
 
-            </div>
+  <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+    <div class="container aside-xxl">
+
+      <a class="navbar-brand block" href="/">SIBEJADSUS</a>
+                                <?php
+if ($message) {
+    echo '<div class="alert alert-' . $type . ' text-center">' . $message . '</div>';
+
+}
+?>
+      <section class="panel panel-default bg-white m-t-lg">
+        <header class="panel-heading text-center">
+          <strong>Sign in</strong>
+        </header>
+        <form action="<?php echo base_url('Login/validate_user'); ?>" class="panel-body wrapper-lg"  method="POST">
+          <div class="form-group">
+            <label class="control-label">Username</label>
+            <input name ="username" type="text" placeholder="username" id="username" class="form-control input-lg">
+
+
+          </div>
+          <div class="form-group">
+            <label class="control-label">password</label>
+            <input name="password"  type="password" id="inputPassword" placeholder="Password" class="form-control input-lg">
+          </div>
+          <!-- <div class="checkbox">
+            <label>
+              <input type="checkbox"> Keep me logged in
+            </label>
+          </div> -->
+          <!-- <a href="#" class="pull-right m-t-xs"><small>Forgot password?</small></a>
+ -->          <button type="submit" class="btn btn-primary">Sign in</button>
+          <div class="line line-dashed"></div>
+          <a href="#" class="btn btn-facebook btn-block"><i class="fa fa-facebook pull-left"></i>Sign in with Facebook</a>
+          <a href="#" class="btn btn-twitter btn-block"><i class="fa fa-twitter pull-left"></i>Sign in with Twitter</a>
+          <a href="#" class="btn btn-gplus btn-block"><i class="fa fa fa-google pull-left"></i>Sign in with Google</a>
+
+        </form>
+      </section>
+    </div>
+  </section>
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder">
+      <p>
+        <small>Sistem Informasi Belajar Jadwal Suster<br>&copy; 2016</small>
+      </p>
+    </div>
+  </footer>
+  <!-- / footer -->
+  <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+  <!-- Bootstrap -->
+  <script src="<?php echo base_url('assets/js/bootstrap.js'); ?>"></script>
+  <!-- App -->
+  <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/app.plugin.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/slimscroll/jquery.slimscroll.min.js'); ?>"></script>
+
+</body>
+</html>
