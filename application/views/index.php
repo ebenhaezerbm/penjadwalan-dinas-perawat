@@ -6,6 +6,7 @@
   <meta name="description" content="and aku adalah cangak" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.css'); ?>" type'="text/css" />
+  <link rel="stylesheet" href="<?php echo base_url('assets/js/datepicker/datepicker.css'); ?>" type'="text/css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/animate.css'); ?>" type'="text/css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>" type'="text/css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/css/font.css'); ?>" type'="text/css" />
@@ -288,9 +289,12 @@ echo $user['username'];
   <script src="<?php echo base_url('assets/js/charts/flot/demo.js'); ?>"></script>
 
   <script src="<?php echo base_url('assets/js/calendar/bootstrap_calendar.js'); ?>"></script>
+
+  <script src="<?php echo base_url('assets/js/datepicker/bootstrap-datepicker.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/calendar/demo.js'); ?>"></script>
 
   <script src="<?php echo base_url('assets/js/sortable/jquery.sortable.js'); ?>"></script>
+  <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
 
 </body>
 </html>

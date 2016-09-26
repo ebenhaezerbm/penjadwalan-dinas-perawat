@@ -14,7 +14,7 @@
 	for ($i=0; $i < $total_days; $i++) { 
 		$last_record = [];
 		foreach ($shift as $key => $value) {
-			$member = check_enqueue($key, $perawat, $last_record);
+			$member = check_enqueue($key, $i, $perawat, $last_record);
 			$results[] = $member;
 			if( $member ){
 				foreach ($member as $k => $v) {

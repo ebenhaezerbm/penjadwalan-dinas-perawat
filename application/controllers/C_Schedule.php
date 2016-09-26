@@ -9,6 +9,7 @@ class C_Schedule extends MY_Controller {
 		$this->load->model('m_Perawat');
 		$this->load->model('m_Pendidikan');
 		$this->load->model('m_Jabatan');
+		$this->load->model('m_Solusi');
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_message('required', '%s: tidak boleh kosong ...');
