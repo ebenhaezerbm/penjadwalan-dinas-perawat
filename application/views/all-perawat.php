@@ -35,16 +35,17 @@ if ($message) {
                                     <tbody>
                                         <?php
 // echo "<pre>";
-// print_r($perawat);
+// print_r($paged);
 // echo "</pre>";
 if ($perawat) {
     $i = 0;
     foreach ($perawat as $data) {
         $i++;
+        $number = $i+$paged;
 
         echo '<tr>
                                                         <td class="text-center">
-                                                            ' . $i . '
+                                                            ' . $number . '
                                                         </td>
 
                                                         <td>' . $data['NIP'] . '</td>
@@ -78,3 +79,4 @@ echo "</tbody>
 
                 </div>
             </div>";
+            echo $pagination;

@@ -1,7 +1,56 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+function searchArray($key='', $value='', $array=array(), $exclude=array()) {
+	$results = [];
+
+	if( $array ){
+		foreach ($array as $k => $v) {
+			
+			if ( isset($v[$key]) && $v[$key] === $value && !in_array($v['NIP'], $exclude) ) {
+				$results[] = $v;
+			}
+		}
+	}
+
+	return $results;
+}
+
+function prependMDArray($a, $b){
+    $result = [];
+
+    $i=0;
+    if( is_array($a) && !empty($a) ){
+        foreach ($a as $key => $value) {
+            if( $i == 0 ){
+                $result[] = $b;
+            }
+
+            $result[] = $value;
+            
+            $i++;
+        }
+    }
+
+    return $result;
+}
+
+function shuffleArray($array) { 
+	if (!is_array($array)) 
+		return $array; 
+
+	$keys = array_keys($array); 
+	shuffle($keys); 
+	$random = array();
+	foreach ($keys as $key) { 
+		$random[$key] = $array[$key]; 
+	}
+
+	return $random;
+}
+
 function days_of_month(){
 	$dateOfMonth = array();
+	
 	$month = date('n'); // 1 through 12
 	$year = date('Y'); // Examples: 1999 or 2003
 
@@ -23,6 +72,23 @@ function days_of_month(){
 	return $list;
 }
 
+function GetAge($dob="1970-01-01") 
+{ 
+	$dob = explode("-",$dob); 
+	
+	$curMonth 	= date("m");
+	$curDay 	= date("j");
+	$curYear 	= date("Y");
+	
+	$age = $curYear - $dob[0]; 
+	
+	if( $curMonth < $dob[1] || ($curMonth == $dob[1] && $curDay < $dob[2]) ) {
+		$age--; 
+	}
+
+	return $age; 
+}
+
 function is_weekday($year=false, $month=false, $day=6){
 	if( false === $year ){
 		$year = date('Y');
@@ -42,89 +108,59 @@ function is_weekday($year=false, $month=false, $day=6){
 	return false;
 }
 
-function searchArray($key='', $value='', $array=array(), $exclude=array()) {
-	$results = [];
-
-	if( $array ){
-		foreach ($array as $k => $v) {
-			
-			if ( isset($v[$key]) && $v[$key] === $value && !in_array($v['NIP'], $exclude) ) {
-				$results[] = $v;
-			}
-		}
-	}
-
-	return $results;
-}
-
-function shuffleArray($array) { 
-	if (!is_array($array)) 
-		return $array; 
-
-	$keys = array_keys($array); 
-	shuffle($keys); 
-	$random = array();
-	foreach ($keys as $key) { 
-		$random[$key] = $array[$key]; 
-	}
-
-	return $random;
-}
-
-function GetAge($dob="1970-01-01") 
-{ 
-	$dob = explode("-",$dob); 
-	
-	$curMonth 	= date("m");
-	$curDay 	= date("j");
-	$curYear 	= date("Y");
-	
-	$age = $curYear - $dob[0]; 
-	
-	if( $curMonth < $dob[1] || ($curMonth == $dob[1] && $curDay < $dob[2]) ) {
-		$age--; 
-	}
-
-	return $age; 
-}
-
 function is_pj_shift($data){
-	if( $data && $data->occupation == 'sarjana' && GetAge($data->start_at) > 1 ){
+	if( $data && $data['education'] == 'sarjana' && GetAge($data['start_at']) > 1 ){
 		return $data;
 	}
 
 	return false;
 }
 
-function get_last_shift($date, $shift='pagi'){
-	$members = [];
-	
-	return $members;
-}
-
-function get_candidate( $data, $length_solution=0 ){
-	$array = searchArray('pj_shift', true, $data);
-	$member[] = $array[0];
+function has_pj_shift($data=false){
+	$pj_shift = false;
 
 	if( $data ){
-
 		foreach ($data as $key => $value) {
-			
-			if( $array[0]['NIP'] != $value['NIP'] ){
-				$value['pj_shift'] = false;
-				$member[] = $value;
-			}
-
-			if( $length_solution > 0 && count($member) >= $length_solution ){
-				break;
+			if( $value['education'] == 'sarjana' && GetAge($value['start_at']) > 1 ){
+				$pj_shift[] = $value;
 			}
 		}
 	}
 
-	return $member;
+	return $pj_shift;
 }
 
-function check_enqueue( $shift='pagi', $day=1, $data, $last_record=array(), $length_solution=4 ){
+function get_schedule_by_month($month=false, $year=false, $shift=false, $order='asc'){
+	$CI =& get_instance();
+	$CI->load->model('M_Solusi');
+
+	if( false === $month ){
+		$month = date('n');
+	}
+
+	if( false === $year ){
+		$year = date('Y');
+	}
+
+	$schedule = $CI->m_Solusi->get_schedule_by_month($month, $year, $shift, $order);
+
+	return $schedule;
+}
+
+function get_schedule_by_date($date=false, $shift=false, $order='asc'){
+	$CI =& get_instance();
+	$CI->load->model('M_Solusi');
+
+	if( false === $date ){
+		$date = date( 'Y-m-d', now() );
+	}
+
+	$schedule = $CI->m_Solusi->get_schedule_by_date($date, $shift, $order);
+
+	return $schedule;
+}
+
+function get_schedule_two_days_ago($day=1, $shift=false, $perawat=false, $order='asc'){
 	$CI =& get_instance();
 	$CI->load->model('M_Solusi');
 
@@ -132,67 +168,63 @@ function check_enqueue( $shift='pagi', $day=1, $data, $last_record=array(), $len
 	$year = date('Y');
 
 	$time = mktime( 12, 0, 0, $month, $day, $year ); // time in integer
-	$date = date( 'Y-m-d', $time );
-	
-	$last_time = mktime( 12, 0, 0, $month, $day-1, $year ); // time in integer
-	$last_date = date( 'Y-m-d', $last_time );
-	
-	$last_shift = $CI->m_Solusi->get_shift_member($shift, $last_date);
+	$nowdate = date( 'Y-m-d', $time );
+	$two_days_ago = date( 'Y-m-d', strtotime('-2 days', $time) );
 
-	$last_day = $CI->m_Solusi->get_member_of_the_day($last_date);
-	
-	if( $last_shift ){
-		foreach ($last_shift as $key => $value) {
-			$last_record[] = $value;
-		}
-	}
+	$schedule = $CI->m_Solusi->get_schedule_two_days_ago($perawat, $shift, $nowdate, $two_days_ago, $order);
 
-	if( $last_day ){
-		foreach ($last_day as $key => $value) {
-			$last_record[] = $value;
-		}
-	}
-
-	$last_ids = [];
-	if( $last_record ){
-		foreach ($last_record as $key => $value) {
-			$last_ids[] = $value['NIP'];
-		}
-	}
-
-	if( $shift == 'pagi' && false === is_weekday($day) ){
-		$kru = searchArray('occupation', 'kru', $data);
-		$kru = $kru[0];
-		$kru['pj_shift'] = false;
-		$member[] = $kru;
-	}
-
-	$pp = searchArray('occupation', 'pp', $data, $last_ids);
-	if( $pp ){
-
-		foreach ($pp as $key => $value) {
-			
-			if( GetAge($value['start_at']) >= 1 ){
-				$value['pj_shift'] = true;
-			}else{
-				$value['pj_shift'] = false;
-			}
-
-			$member[] = $value;
-		}
-	}
-
-	$member = get_candidate($member, $length_solution);
-
-	if( $member ){
-		foreach ($member as $key => $value) {
-			$input['NIP'] = $value['NIP'];
-			$input['shift'] = $shift;
-			$input['date'] = $date;
-			$CI->m_Solusi->insert_solusi($input);
-		}
-	}
-
-	return $member;
+	return $schedule;
 }
 
+function insert_schedule($data){
+	if( empty($data) ){
+		return false;
+	}
+
+	$CI =& get_instance();
+	$CI->load->model('M_Solusi');
+
+	$insert_id = $CI->m_Solusi->insert_schedule($data);
+
+	return $insert_id;
+}
+
+function update_schedule($id, $data){
+	if( empty($data) ){
+		return false;
+	}
+
+	$CI =& get_instance();
+	$CI->load->model('M_Solusi');
+
+	$update_id = $CI->m_Solusi->update_schedule($id, $data);
+
+	return $update_id;
+}
+
+function delete_schedule($nip, $shift, $date){
+	if( empty($nip) || empty($shift) || empty($date) ){
+		return false;
+	}
+
+	$CI =& get_instance();
+	$CI->load->model('M_Solusi');
+
+	$CI->m_Solusi->delete_schedule($nip, $shift, $date);
+}
+
+function in_this_schedule($schedule=false, $perawat){
+	if( is_array($schedule) && !empty($schedule) ){
+		foreach ($schedule as $shift) {
+			if( is_array($shift) && !empty($shift) ){
+				foreach ($shift as $key => $value) {
+					if( isset($value['NIP']) && !empty($value['NIP']) && $value['NIP'] == $perawat ){
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return false;
+}

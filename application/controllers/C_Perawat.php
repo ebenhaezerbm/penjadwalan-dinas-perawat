@@ -20,11 +20,38 @@ class C_Perawat extends MY_Controller {
 		$data['message']	= $this->session->flashdata('messages');
 		$data['type']		= $this->session->flashdata('type');
 
+		// Start Pagination Config 
+		$this->load->library('pagination');
+		
+		$config  				= $this->_get_pagination_common_config();
+		$config['uri_segment'] 	= 3;
+		$config['base_url'] 	= base_url('C_Perawat/index');
+		
+		if (count($_GET) > 0) {
+			$config['suffix'] = '?' . http_build_query($_GET, '', "&");
+		}
+
+		$config['first_url'] 	= $config['base_url'].'?'.http_build_query($_GET);
+		$config['total_rows'] 	= $this->m_Perawat->count_perawat();
+		$config['per_page'] 	= 12;
+		
+		$this->pagination->initialize($config);
+		
+		if( $this->uri->segment(3) ){
+			$page = $this->uri->segment(3);
+		}else{
+			$page = 0;
+		}
+		
+		$data['pagination'] 	= $this->pagination->create_links();
+		// End Pagination Config
+		
 		$data['title']		= 'Data Perawat';
 		$data['section']	= 'all-perawat';
 		$data['template']	= 'all-perawat.php';
 
-		$data['perawat'] 	= $this->m_Perawat->get_perawat();
+		$data['perawat'] 	= $this->m_Perawat->get_perawat($config['per_page'] ,$page);
+		$data['paged'] 		= $page;
 
 		$this->load->view( 'index', $data );
 	}
