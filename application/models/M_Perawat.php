@@ -4,7 +4,7 @@ class M_Perawat extends CI_Model {
 	
 	public function get_perawat()
 	{
-		$this->db->order_by( 'ID', 'desc' );
+		$this->db->order_by( 'id', 'RANDOM' );
 		return $this->db->get( 'tb_perawat' )->result_array();
 	}
 

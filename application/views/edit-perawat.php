@@ -44,8 +44,22 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="start-at">Tanggal masuk</label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control datepicker" id="start-at" name="start_at" value="<?php echo $perawat->start_at; ?>" placeholder="Tanggal masuk" />
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="date-of-birth">Tanggal lahir</label>
-                                    <input type="text" class="form-control" id="date-of-birth" name="date_of_birth" value="<?php echo $perawat->date_of_birth; ?>" placeholder="Tanggal lahir" />
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control datepicker" id="date-of-birth" name="date_of_birth" value="<?php echo $perawat->date_of_birth; ?>" placeholder="Tanggal lahir" />
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="place-of-birth">Tempat lahir</label>

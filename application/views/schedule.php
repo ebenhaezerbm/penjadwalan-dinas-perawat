@@ -9,12 +9,12 @@
 	);
 
 	echo '<pre>';
-
+	
 	$results = [];
 	for ($i=0; $i < $total_days; $i++) { 
 		$last_record = [];
 		foreach ($shift as $key => $value) {
-			$member = check_enqueue($key, $perawat, $last_record);
+			$member = check_enqueue($key, $i, $perawat, $last_record);
 			$results[] = $member;
 			if( $member ){
 				foreach ($member as $k => $v) {
@@ -24,7 +24,19 @@
 		}
 	}
 
-	print_r( $results );
+	// print_r($results);
+	// exit();
+	if( $results ){
+		foreach ($results as $r) {
+			// print_r( $r );die();
+			echo '<p>';
+			foreach ($r as $key => $value) {
+				echo (($value['pj_shift']) ? '(' .$value['name']. ')' : $value['name']) . ' ->' . $value['occupation'];
+				echo '<br />';
+			}
+			echo '</p>';
+		}
+	}
 	die();
 ?>
 

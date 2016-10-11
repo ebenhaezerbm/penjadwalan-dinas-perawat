@@ -74,6 +74,7 @@ class C_Perawat extends MY_Controller {
 			$input['education'] 		= $this->input->post('education');
 			$input['occupation'] 		= $this->input->post('occupation');
 			$input['phone'] 			= $this->input->post('phone');
+			$input['start_at'] 			= $this->input->post('start_at');
 
 			$this->session->set_flashdata(
 				array(
@@ -112,6 +113,7 @@ class C_Perawat extends MY_Controller {
 			$update['education'] 		= $this->input->post('education');
 			$update['occupation'] 		= $this->input->post('occupation');
 			$update['phone'] 			= $this->input->post('phone');
+			$update['start_at'] 		= $this->input->post('start_at');
 
 			$this->session->set_flashdata(
 				array(
